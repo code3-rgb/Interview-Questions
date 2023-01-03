@@ -35,8 +35,9 @@ func anangram(str string, key string) {
 
 func main() {
 	// str := "gotxtogxotgxdogt"
-	str := "racecare"
-	key := "race"
+	// str := "racecare"
+	str := "forxxorfxdofr"
+	key := "for"
 
 	anangram(str, key)
 
