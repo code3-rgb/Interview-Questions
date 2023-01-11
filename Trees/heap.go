@@ -22,8 +22,21 @@ func heapifyUp(index int) {
 func hasParent(index int) bool {
 	return getParent(index) >= 0
 }
+func hasLeft(index int) bool {
+	return getLeft(index) < len(arr)
+}
+func hasRight(index int) bool {
+	return getRight(index) < len(arr)
+}
+
 func getParent(index int) int {
 	return index / 2
+}
+func getLeft(index int) int {
+	return 2*index + 1
+}
+func getRight(index int) int {
+	return 2*index + 2
 }
 
 func swap(index1 int, index2 int) {

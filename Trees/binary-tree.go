@@ -89,6 +89,24 @@ func min_value(n *node) *node {
 	return temp
 }
 
+func max_depth(n *node) int {
+	if n == nil {
+		return 0
+	}
+	if n.left == nil && n.right == nil {
+		return 1
+	}
+	l := max_depth(n.left)
+	r := max_depth(n.right)
+
+	if l >= r {
+		return l + 1
+	} else {
+		return r + 1
+	}
+
+}
+
 func inorder(n *node) {
 	if n == nil {
 		return
@@ -122,5 +140,8 @@ func main() {
 	t.Delete(12)
 
 	inorder(t.tree)
+	h := max_depth(t.tree)
+
+	pl("height is:", h)
 
 }
