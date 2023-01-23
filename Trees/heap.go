@@ -10,6 +10,11 @@ type node struct {
 }
 
 func (n *node) removeMin() int {
+
+	// if n.store == nil {
+	// 	return 0
+	// }
+
 	last := len(n.store) - 1
 
 	n.swap(0, last)
@@ -18,10 +23,25 @@ func (n *node) removeMin() int {
 	n.store = aux
 	n.size -= 1
 
+	n.heapifyDown(0)
+
 	return deletedNode
 }
 func (n *node) heapifyDown(index int) {
-
+	for n.RightChildExist(index) {
+		smaller := getLeftChildIndex(index)
+		left := n.store[getLeftChildIndex(index)]
+		right := n.store[getRightChildIndex(index)]
+		if n.RightChildExist(index) && right < left {
+			smaller = getRightChildIndex(index)
+		}
+		if n.store[index] < n.store[smaller] {
+			break
+		} else {
+			n.swap(index, smaller)
+		}
+		index = smaller
+	}
 }
 
 func (n *node) insert(data int) {
@@ -90,6 +110,22 @@ func main() {
 	heap.insert(2)
 	heap.insert(10)
 	heap.insert(4)
+
+	pl(heap.store)
+
+	pl(heap.removeMin())
+
+	pl(heap.store)
+
+	pl(heap.removeMin())
+
+	pl(heap.store)
+
+	pl(heap.removeMin())
+
+	pl(heap.store)
+
+	pl(heap.removeMin())
 
 	pl(heap.store)
 
