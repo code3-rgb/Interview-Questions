@@ -35,29 +35,37 @@ func convert(store [][]string) map[string][]string {
 
 }
 
-func has_path(dest, src string) bool {
-	graph := convert(store)
+func hasPath(dest, src string, graph map[string][]string, memo map[string]string) bool {
 
-	stack := graph[src]
+	if src == dest {
+		return true
+	}
+	if memo[src] != "" {
+		return false
+	}
+	memo[src] = src
 
-	for len(stack) > 0 {
-		curr := stack[len(stack)-1]
-		stack = stack[:len(stack)-1]
+	var status bool
 
-		if curr == dest {
+	for i := 0; i < len(graph[src]); i++ {
+		status = hasPath(dest, graph[src][i], graph, memo)
+		if status {
 			return true
 		}
-
-		for i := 0; i < len(graph[curr]); i++ {
-			stack = append(stack, graph[curr][i])
-		}
-
 	}
-
 	return false
 
 }
 
 func main() {
-	pl(has_path("k", "n"))
+
+	graphs := convert(store)
+
+	pl(graphs)
+
+	memo := map[string]string{}
+	status := hasPath("n", "k", graphs, memo)
+
+	pl(status)
+
 }
