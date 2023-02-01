@@ -75,7 +75,7 @@ func delete(data int, n *node) *node {
 
 		tempNode := min_value(n.right)
 		n.data = tempNode.data
-		n.right = delete(data, n.right)
+		n.right = delete(data, tempNode.right)
 
 	}
 	return n
@@ -119,25 +119,27 @@ func inorder(n *node) {
 func main() {
 	t := Tree{}
 
-	t.Insert(12)
-	t.Insert(15)
-	t.Insert(5)
-	t.Insert(3)
-	t.Insert(17)
-	t.Insert(19)
-	t.Insert(7)
-	t.Insert(9)
+	// t.Insert(12)
+	// t.Insert(15)
+	// t.Insert(5)
+	// t.Insert(3)
+	// t.Insert(17)
+	// t.Insert(19)
+	// t.Insert(7)
+	// t.Insert(9)
 
-	pl("AFTER deletion:")
+	t.Insert(33)
+	t.Insert(31)
+	t.Insert(3)
+	t.Insert(43)
+
+	pl("Before deletion:")
 	inorder(t.tree)
 
 	pl()
 	pl("AFTER deletion:")
 
-	t.Delete(7)
-	t.Delete(17)
-	t.Delete(9)
-	t.Delete(12)
+	t.Delete(33)
 
 	inorder(t.tree)
 	h := max_depth(t.tree)
